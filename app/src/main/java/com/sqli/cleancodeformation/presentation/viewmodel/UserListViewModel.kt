@@ -2,35 +2,36 @@ package com.sqli.cleancodeformation.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.sqli.cleancodeformation.domain.model.User
-import com.sqli.cleancodeformation.domain.usecase.AddUserUseCase
 import com.sqli.cleancodeformation.domain.usecase.GetAllUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
     private val getAllUsersUseCase: GetAllUsersUseCase,
-    private val addUserUseCase: AddUserUseCase
-) :
-    ViewModel() {
+) : ViewModel() {
 
-    private val _userList = MutableLiveData<List<User>>()
-
-    val userList: MutableLiveData<List<User>>
-        get() = _userList
+    private val viewModelScope = CoroutineScope(Dispatchers.Main)
+    val userList: MutableLiveData<List<User>> = MutableLiveData()
 
     init {
         getUsers()
     }
 
-    fun getUsers() {
+    private fun getUsers() {
         viewModelScope.launch {
-            val users = getAllUsersUseCase.invoke()
-            _userList.value = users.value
+            val result = getAllUsersUseCase.invoke()
+            result.value?.let { userList.postValue(it) }
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
+    }
 }
