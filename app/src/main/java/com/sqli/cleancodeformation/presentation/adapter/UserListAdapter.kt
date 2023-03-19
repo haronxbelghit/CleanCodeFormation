@@ -8,10 +8,11 @@ import com.sqli.cleancodeformation.databinding.ItemUserBinding
 import com.sqli.cleancodeformation.domain.model.User
 
 
+class UserListAdapter(private var userList: MutableLiveData<List<User>>) :
+    RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
-class UserListAdapter(private var userList: MutableLiveData<List<User>>) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
-
-    inner class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             binding.user = user
             binding.executePendingBindings()
@@ -23,6 +24,7 @@ class UserListAdapter(private var userList: MutableLiveData<List<User>>) : Recyc
         val binding = ItemUserBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = userList.value?.get(position)
         user?.let {
