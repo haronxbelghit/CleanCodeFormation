@@ -2,8 +2,11 @@ package com.sqli.cleancodeformation.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sqli.cleancodeformation.databinding.ItemUserBinding
 import com.sqli.cleancodeformation.domain.model.User
 
@@ -39,4 +42,12 @@ class UserListAdapter(private var userList: MutableLiveData<List<User>>) :
     fun setData(userList: List<User>) {
         this.userList.postValue(userList)
     }
+
+
 }
+    @BindingAdapter("profilePictureUri")
+    fun ImageView.loadProfilePicture(url: String) {
+            Glide.with(context)
+                .load(url)
+                .into(this)
+    }

@@ -12,10 +12,10 @@ import javax.inject.Inject
 class AddUserViewModel @Inject constructor(private val addUserUseCase: AddUserUseCase) :
     ViewModel() {
 
-    fun addUser(username: String, profilePictureUrl: String) {
+    fun addUser(username: String, profilePictureUri: String) {
         val user = User(
             username = username,
-            profilePictureUrl = profilePictureUrl
+            profilePictureUri = profilePictureUri
         )
         viewModelScope.launch {
             addUserUseCase(user)

@@ -8,5 +8,5 @@ data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     var username: String,
-    var profilePictureUrl: String
+    var profilePictureUri: String
 )

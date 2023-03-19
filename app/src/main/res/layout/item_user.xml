@@ -1,4 +1,6 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,13 +12,26 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:padding="16dp"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:cropToPadding="true"
+            app:srcCompat="@drawable/bg_no_users"
+            app:profilePictureUri="@{user.profilePictureUri}"
+            android:contentDescription="@string/user_profile_picture" />
 
         <TextView
             android:id="@+id/username_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{user.username}" />
+            android:text="@{user.username}"
+            android:gravity="center"
+            android:textSize="27sp"
+            tools:text="Username" />
 
     </androidx.cardview.widget.CardView>
 </layout>

@@ -23,13 +23,6 @@ class UserListViewModel @Inject constructor(
         getUsers()
     }
 
-//    @BindingAdapter("userList")
-//    fun setUsers(recyclerView: RecyclerView, userList: MutableLiveData<List<User>>) {
-//        userList.value?.let {
-//            recyclerView.adapter = UserListAdapter(getUsers())
-//        }
-//    }
-
     private fun getUsers(): MutableLiveData<List<User>> {
         val mutableLiveData = MutableLiveData<List<User>>()
         viewModelScope.launch {
