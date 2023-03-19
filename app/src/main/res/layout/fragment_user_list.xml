@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="viewModel"
             type="com.sqli.cleancodeformation.presentation.viewmodel.UserListViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,16 +17,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_list_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
             app:layout_constraintBottom_toTopOf="@+id/addUserFAB"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_user"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 

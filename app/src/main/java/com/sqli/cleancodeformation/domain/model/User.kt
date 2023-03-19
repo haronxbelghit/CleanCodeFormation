@@ -3,7 +3,7 @@ package com.sqli.cleancodeformation.domain.model
 import com.sqli.cleancodeformation.data.local.entity.UserEntity
 
 data class User(
-    var id: Int? = null,
+    var id: Int? = 1,
     var username: String,
     var profilePictureUrl: String
 ) {

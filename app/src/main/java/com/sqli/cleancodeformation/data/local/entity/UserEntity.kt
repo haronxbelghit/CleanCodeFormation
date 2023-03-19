@@ -7,8 +7,6 @@ import androidx.room.PrimaryKey
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    val username: String,
-    val profilePictureUrl: String
-) {
-    constructor() : this(null, "", "")
-}
+    var username: String,
+    var profilePictureUrl: String
+)
