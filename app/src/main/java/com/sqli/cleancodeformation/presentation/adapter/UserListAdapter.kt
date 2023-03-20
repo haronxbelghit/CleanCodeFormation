@@ -11,13 +11,17 @@ import com.sqli.cleancodeformation.databinding.ItemUserBinding
 import com.sqli.cleancodeformation.domain.model.User
 
 
-class UserListAdapter(private var userList: MutableLiveData<List<User>>) :
+class UserListAdapter(
+    private var userList: MutableLiveData<List<User>>,
+    private val listener: OnItemClickListener
+) :
     RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             binding.user = user
+            binding.root.setOnClickListener { user.id?.let { it1 -> listener.onItemClick(it1) } }
             binding.executePendingBindings()
         }
     }
@@ -26,6 +30,11 @@ class UserListAdapter(private var userList: MutableLiveData<List<User>>) :
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemUserBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
+    }
+
+    // Define an interface for the item click listener
+    interface OnItemClickListener {
+        fun onItemClick(id: Int)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -45,9 +54,12 @@ class UserListAdapter(private var userList: MutableLiveData<List<User>>) :
 
 
 }
-    @BindingAdapter("profilePictureUri")
-    fun ImageView.loadProfilePicture(url: String) {
-            Glide.with(context)
-                .load(url)
-                .into(this)
+
+@BindingAdapter("profilePictureUri")
+fun ImageView.loadProfilePicture(url: String?) {
+    if (url != null) {
+        Glide.with(context)
+            .load(url)
+            .into(this)
     }
+}

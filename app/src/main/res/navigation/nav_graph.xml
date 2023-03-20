@@ -14,6 +14,13 @@
         <action
             android:id="@+id/action_userListFragment_to_addUserFragment"
             app:destination="@id/addUserFragment" />
+        <action
+            android:id="@+id/action_userListFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment">
+            <argument
+                android:name="userId"
+                app:argType="integer" />
+        </action>
     </fragment>
 
     <fragment
@@ -28,4 +35,16 @@
             app:popUpTo="@id/userListFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.sqli.cleancodeformation.presentation.view.fragment.GetUserDetailsFragment"
+        android:label="User Detail"
+        tools:layout="@layout/fragment_get_user_details">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>

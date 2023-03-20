@@ -73,6 +73,7 @@ class AddUserFragment : Fragment() {
             }
         }
     }
+
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -81,7 +82,7 @@ class AddUserFragment : Fragment() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode == REQUEST_CODE_READ_EXTERNAL_STORAGE_PERMISSION) {
+        if (requestCode == REQUEST_CODE_READ_EXTERNAL_STORAGE_PERMISSION || requestCode == REQUEST_CODE_GOOGLE_PHOTOS_PERMISSIONS) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, go ahead and select image
                 selectImage()
@@ -95,6 +96,7 @@ class AddUserFragment : Fragment() {
             }
         }
     }
+
     private fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
@@ -113,8 +115,11 @@ class AddUserFragment : Fragment() {
             profilePicture = imageUri.toString()
         }
     }
+
     companion object {
         private const val REQUEST_CODE_READ_EXTERNAL_STORAGE_PERMISSION = 1
         private const val REQUEST_CODE_PICK_IMAGE = 2
+        private const val REQUEST_CODE_GOOGLE_PHOTOS_PERMISSIONS = 123
+
     }
 }

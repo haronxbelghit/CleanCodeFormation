@@ -19,6 +19,8 @@ class UserListViewModel @Inject constructor(
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
     val userList: MutableLiveData<List<User>> = MutableLiveData()
 
+    val selectedUserId = MutableLiveData<Int>()
+
     init {
         getUsers()
     }
@@ -31,6 +33,10 @@ class UserListViewModel @Inject constructor(
             }
         }
         return mutableLiveData
+    }
+
+    fun onUserClicked(id: Int) {
+        selectedUserId.value = id
     }
 
     override fun onCleared() {

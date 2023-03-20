@@ -12,24 +12,24 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/user_profile_picture"
             android:cropToPadding="true"
-            app:srcCompat="@drawable/bg_no_users"
             app:profilePictureUri="@{user.profilePictureUri}"
-            android:contentDescription="@string/user_profile_picture" />
+            app:srcCompat="@drawable/bg_no_users" />
 
         <TextView
             android:id="@+id/username_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{user.username}"
             android:gravity="center"
+            android:text="@{user.username}"
             android:textSize="27sp"
             tools:text="Username" />
 

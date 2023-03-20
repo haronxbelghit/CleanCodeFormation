@@ -8,5 +8,7 @@ interface UserRepository {
 
     suspend fun getAllUsers(): Flow<List<User>>
     suspend fun addUser(user: User)
+    suspend fun getUserById(id: Int): User
+
 }
 

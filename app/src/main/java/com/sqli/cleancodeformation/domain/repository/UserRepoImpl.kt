@@ -26,4 +26,7 @@ class UserRepoImpl @Inject constructor(
         localUserRepository.insert(userEntity)
     }
 
+    override suspend fun getUserById(id: Int): User {
+        return localUserRepository.getUserById(id).toDomain()
+    }
 }

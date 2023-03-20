@@ -28,17 +28,32 @@ class UserListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val binding = FragmentUserListBinding.inflate(inflater, container, false)
-        recyclerView = binding.userListRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = UserListAdapter(MutableLiveData(emptyList()))
-        recyclerView.adapter = adapter
+
         viewModel = ViewModelProvider(this)[UserListViewModel::class.java]
+        recyclerView = binding.userListRecyclerView
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        adapter = UserListAdapter(MutableLiveData(emptyList()),
+            object : UserListAdapter.OnItemClickListener {
+                override fun onItemClick(id: Int) {
+                    viewModel.onUserClicked(id)
+                }
+            })
+
+        viewModel.selectedUserId.observe(viewLifecycleOwner) { userId ->
+            val action = UserListFragmentDirections.actionUserListFragmentToUserDetailFragment(userId)
+            findNavController().navigate(action)
+        }
+
+        recyclerView.adapter = adapter
         viewModel.userList.observe(viewLifecycleOwner) { userList ->
             adapter.setData(userList)
         }
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
         binding.addUserFAB.setOnClickListener {
             findNavController().navigate(R.id.action_userListFragment_to_addUserFragment)
         }

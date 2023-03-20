@@ -6,10 +6,7 @@ import com.sqli.cleancodeformation.data.local.dao.UserDao
 import com.sqli.cleancodeformation.data.local.database.AppDatabase
 import com.sqli.cleancodeformation.domain.repository.UserRepoImpl
 import com.sqli.cleancodeformation.domain.repository.UserRepository
-import com.sqli.cleancodeformation.domain.usecase.AddUserUseCase
-import com.sqli.cleancodeformation.domain.usecase.AddUserUseCaseImpl
-import com.sqli.cleancodeformation.domain.usecase.GetAllUsersUseCase
-import com.sqli.cleancodeformation.domain.usecase.GetAllUsersUseCaseImpl
+import com.sqli.cleancodeformation.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +27,9 @@ object AppModule {
         app,
         AppDatabase::class.java,
         "users_db"
-    ).build()
+    )
+        .allowMainThreadQueries()
+    .build()
 
 
     @Singleton
@@ -63,4 +62,8 @@ object AppModule {
         return AddUserUseCaseImpl(userRepository)
     }
 
+    @Provides
+    fun provideGetUserDetailsUseCase(userRepository: UserRepository): GetUserDetailsUseCase {
+        return GetUserDetailsUseCaseImpl(userRepository)
+    }
 }
