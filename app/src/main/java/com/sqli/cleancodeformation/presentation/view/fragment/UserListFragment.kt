@@ -38,19 +38,23 @@ class UserListFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = UserListAdapter(MutableLiveData(emptyList()),
-            object : UserListAdapter.OnItemClickListener {
-                override fun onItemClick(id: Int) {
-                    viewModel.onUserClicked(id)
-                }
-            })
+        viewModel.userList.observe(viewLifecycleOwner) { userList ->
+            adapter = UserListAdapter(
+                MutableLiveData(userList),
+                object : UserListAdapter.OnItemClickListener {
+                    override fun onItemClick(id: Int) {
+                        viewModel.onUserClicked(id)
+                    }
+                })
+            recyclerView.adapter = adapter
+        }
 
         viewModel.selectedUserId.observe(viewLifecycleOwner) { userId ->
-            val action = UserListFragmentDirections.actionUserListFragmentToUserDetailFragment(userId)
+            val action =
+                UserListFragmentDirections.actionUserListFragmentToUserDetailFragment(userId)
             findNavController().navigate(action)
         }
 
-        recyclerView.adapter = adapter
         viewModel.userList.observe(viewLifecycleOwner) { userList ->
             adapter.setData(userList)
         }

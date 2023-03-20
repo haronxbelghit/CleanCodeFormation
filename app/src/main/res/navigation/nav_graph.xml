@@ -17,9 +17,6 @@
         <action
             android:id="@+id/action_userListFragment_to_userDetailFragment"
             app:destination="@id/userDetailFragment">
-            <argument
-                android:name="userId"
-                app:argType="integer" />
         </action>
     </fragment>
 
@@ -45,6 +42,10 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_userDetailFragment_to_userListFragment"
+            app:destination="@id/userListFragment"
+            app:popUpTo="@id/userListFragment" />
     </fragment>
 
 </navigation>

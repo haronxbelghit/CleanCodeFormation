@@ -29,7 +29,7 @@ object AppModule {
         "users_db"
     )
         .allowMainThreadQueries()
-    .build()
+        .build()
 
 
     @Singleton

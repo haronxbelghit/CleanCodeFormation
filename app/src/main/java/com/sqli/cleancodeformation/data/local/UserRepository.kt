@@ -17,7 +17,7 @@ class UserRepository @Inject constructor(
         userDao.insert(userEntity)
     }
 
-    fun getUserById(id: Int?) : UserEntity {
+    fun getUserById(id: Int?): UserEntity {
         return userDao.getUserById(id)
     }
 

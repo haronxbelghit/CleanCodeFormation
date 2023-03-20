@@ -7,8 +7,8 @@ import java.io.Serializable
 
 data class User(
     var id: Int? = null,
-    var username: String= "default_username",
-    var profilePictureUri: String= "default_uri"
+    var username: String = "default_username",
+    var profilePictureUri: String = "default_uri"
 ) : Serializable, Parcelable {
     constructor(source: Parcel) : this(
         source.readValue(Int::class.java.classLoader) as Int?,

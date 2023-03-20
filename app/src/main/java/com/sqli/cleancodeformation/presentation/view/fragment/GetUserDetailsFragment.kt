@@ -31,7 +31,6 @@ class GetUserDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[GetUserDetailsViewModel::class.java]
-
         val userId = arguments?.getInt("userId") ?: 0
         viewModel.getUserById(userId)
 
