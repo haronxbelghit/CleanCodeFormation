@@ -16,8 +16,7 @@
             app:destination="@id/addUserFragment" />
         <action
             android:id="@+id/action_userListFragment_to_userDetailFragment"
-            app:destination="@id/userDetailFragment">
-        </action>
+            app:destination="@id/userDetailFragment" />
     </fragment>
 
     <fragment

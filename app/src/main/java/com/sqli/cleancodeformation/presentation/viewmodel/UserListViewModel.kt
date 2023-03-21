@@ -21,7 +21,7 @@ class UserListViewModel @Inject constructor(
     val userList: MutableLiveData<List<User>> = _userList
 
     // SingleLiveData to avoid looping in the livedata navigation and stay stuck in userdetailfrag
-    val selectedUserId =  SingleLiveData<Int>()
+    val selectedUserId = SingleLiveData<Int>()
 
     init {
         getUsers()

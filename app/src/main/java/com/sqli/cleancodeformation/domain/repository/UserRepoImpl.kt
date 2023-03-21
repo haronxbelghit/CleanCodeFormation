@@ -7,7 +7,9 @@ import com.sqli.cleancodeformation.domain.model.toDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserRepoImpl @Inject constructor(
     private val localUserRepository: com.sqli.cleancodeformation.data.local.UserRepository
 ) : UserRepository {
