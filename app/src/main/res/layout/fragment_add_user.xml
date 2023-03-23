@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -13,33 +14,136 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+<!--        <TextView-->
+<!--            android:id="@+id/tv_frag_title"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="Remplir vos données personelles"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
         <ImageView
             android:id="@+id/user_profile_picture"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/user_profile_picture" />
 
         <Button
             android:id="@+id/select_image_button"
-            android:layout_width="281dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="7dp"
             android:text="@string/select_image" />
-
+    </LinearLayout>
         <EditText
             android:id="@+id/username_edit_text"
-            android:layout_width="393dp"
-            android:layout_height="80dp"
-            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="24dp"
             android:hint="@string/username"
             android:importantForAutofill="no"
             android:inputType="text" />
 
+        <EditText
+            android:id="@+id/et_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/lastname"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_city"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/city"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_country"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/country"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_job"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/job"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_desc"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/description"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/phone"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/et_tel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/telephone"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="7dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            />
+
+
         <Button
             android:id="@+id/save_button"
+            android:layout_marginTop="24dp"
             android:layout_width="244dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

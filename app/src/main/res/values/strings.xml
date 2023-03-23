@@ -2,7 +2,7 @@
     <string name="app_name">CleanCodeFormation</string>
     <string name="user_profile_picture">profile pic</string>
     <string name="select_image">select image</string>
-    <string name="username">username</string>
+    <string name="username">Firstname</string>
     <string name="save">save</string>
     <string name="add_user_fab_content_description">add user</string>
     <string name="user_profile_image">profile img</string>
@@ -10,4 +10,22 @@
     <string name="action_add">add</string>
     <string name="savee">Save</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="usernameSample">Ora Romero</string>
+    <string name="countrySample">Maroc</string>
+    <string name="jobSample">Vendeuse</string>
+    <string name="descSample">Vente des marchandises et services après vente</string>
+    <string name="location">Location</string>
+    <string name="telephone">Telephone</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="citySample">Andersonmouth</string>
+    <string name="telephoneSample">271–933–1309</string>
+    <string name="phoneSample">086–650—5148</string>
+    <string name="emailSample">frank@orange.com</string>
+    <string name="lastname">Lastname</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="job">Job</string>
+    <string name="description">Description</string>
 </resources>
