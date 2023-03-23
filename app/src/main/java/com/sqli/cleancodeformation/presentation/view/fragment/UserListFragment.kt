@@ -47,6 +47,7 @@ class UserListFragment : Fragment() {
                     }
                 })
             recyclerView.adapter = adapter
+            adapter.setData(userList)
         }
 
         viewModel.selectedUserId.observe(viewLifecycleOwner) { userId ->

@@ -20,4 +20,6 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE id=:id")
     fun getUserById(id: Int?): UserEntity
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(userEntities: List<UserEntity>)
 }

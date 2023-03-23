@@ -1,34 +1,26 @@
 package com.sqli.cleancodeformation.domain.repository
 
-import com.sqli.cleancodeformation.data.local.entity.UserEntity
+import com.sqli.cleancodeformation.data.UserDataSource
 import com.sqli.cleancodeformation.domain.model.User
-import com.sqli.cleancodeformation.domain.model.fromDomain
-import com.sqli.cleancodeformation.domain.model.toDomain
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UserRepoImpl @Inject constructor(
-    private val localUserRepository: com.sqli.cleancodeformation.data.local.UserRepository
+    private val userDataSource: UserDataSource
 ) : UserRepository {
 
     override suspend fun getAllUsers(): Flow<List<User>> {
-        val userEntityList = localUserRepository.getAllUsers()
-        val userEntityListConv: Flow<List<User>> =
-            userEntityList.map { userEList: List<UserEntity> ->
-                userEList.map { it.toDomain() }
-            }
-        return userEntityListConv
+        return userDataSource.getUsers()
     }
 
+
     override suspend fun addUser(user: User) {
-        val userEntity = user.fromDomain()
-        localUserRepository.insert(userEntity)
+        userDataSource.addUser(user)
     }
 
     override suspend fun getUserById(id: Int): User {
-        return localUserRepository.getUserById(id).toDomain()
+        return userDataSource.getUserById(id)
     }
 }

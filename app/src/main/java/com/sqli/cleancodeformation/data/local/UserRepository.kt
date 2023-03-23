@@ -21,4 +21,7 @@ class UserRepository @Inject constructor(
         return userDao.getUserById(id)
     }
 
+    suspend fun insertAll(userEntities: List<UserEntity>) {
+        userDao.insertAll(userEntities)
+    }
 }
