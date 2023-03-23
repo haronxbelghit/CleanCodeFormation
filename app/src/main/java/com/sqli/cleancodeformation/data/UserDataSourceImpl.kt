@@ -15,18 +15,6 @@ class UserDataSourceImpl @Inject constructor(
 ) : UserDataSource {
 
     override suspend fun getUsers(): Flow<List<User>> {
-//        val userLocalEntityList = userEntityRepository.getAllUsers()
-//        val userRemoteEntityList = userRemoteDataSource.getUsers()
-//
-//        userEntityRepository.insertAll(userRemoteEntityList)
-//
-//        val allUsersFlow = userLocalEntityList.map { it + userRemoteEntityList }
-//
-//        return allUsersFlow.map { userEntityList ->
-//            userEntityList.map { it.toDomain() }
-//        }
-
-//        val userLocalEntityList = userEntityRepository.getAllUsers()
         val userRemoteEntityList = userRemoteDataSource.getUsers()
 
         userEntityRepository.insertAll(userRemoteEntityList)
