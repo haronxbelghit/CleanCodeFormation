@@ -7,4 +7,6 @@ interface UserDataSource {
     suspend fun getUsers(): Flow<List<User>>
     suspend fun addUser(user: User)
     suspend fun getUserById(id: Int): User
+    suspend fun getUsersPaged(limit: Int, offset: Int): List<User>
+    suspend fun getUsersCount(): Int
 }

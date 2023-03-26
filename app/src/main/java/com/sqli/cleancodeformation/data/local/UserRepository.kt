@@ -24,4 +24,9 @@ class UserRepository @Inject constructor(
     suspend fun insertAll(userEntities: List<UserEntity>) {
         userDao.insertAll(userEntities)
     }
+
+    suspend fun getAllUsersPaged(limit: Int, offset: Int): List<UserEntity> {
+        return userDao.getUsersPaged(limit, offset)
+    }
+
 }

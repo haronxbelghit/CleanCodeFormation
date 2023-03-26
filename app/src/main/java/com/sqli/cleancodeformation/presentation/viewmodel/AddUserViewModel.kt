@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddUserViewModel @Inject constructor(private val addUserUseCase: AddUserUseCase) :
+class AddUserViewModel @Inject constructor(private val addUserUseCase: AddUserUseCase, private val sharedViewModel: UserSharedViewModel) :
     ViewModel() {
 
     fun addUser(username: String, profilePictureUri: String) {
@@ -19,6 +19,7 @@ class AddUserViewModel @Inject constructor(private val addUserUseCase: AddUserUs
         )
         viewModelScope.launch {
             addUserUseCase(user)
+            sharedViewModel.onUserAdded()
         }
     }
 }

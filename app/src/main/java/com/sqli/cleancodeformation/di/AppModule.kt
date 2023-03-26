@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.sqli.cleancodeformation.data.UserDataSource
 import com.sqli.cleancodeformation.data.UserDataSourceImpl
+import com.sqli.cleancodeformation.data.UserPagingDataSource
 import com.sqli.cleancodeformation.data.local.database.AppDatabase
 import com.sqli.cleancodeformation.data.remote.UserRemoteDataSource
 import com.sqli.cleancodeformation.data.remote.UserRemoteDataSourceImpl
@@ -11,6 +12,7 @@ import com.sqli.cleancodeformation.data.remote.api.UserApiService
 import com.sqli.cleancodeformation.domain.repository.UserRepoImpl
 import com.sqli.cleancodeformation.domain.repository.UserRepository
 import com.sqli.cleancodeformation.domain.usecase.*
+import com.sqli.cleancodeformation.presentation.viewmodel.UserSharedViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -77,15 +79,34 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(userDataSource: UserDataSource): UserRepository {
+    fun provideUserRepository(
+        userDataSource: UserDataSource,
+//        userPagingSource: UserPagingDataSource
+    ): UserRepository {
         return UserRepoImpl(
-            userDataSource
+            userDataSource,
+//            userPagingSource
         )
+    }
+    @Singleton
+    @Provides
+    fun provideYourSharedVM() : UserSharedViewModel{
+        return UserSharedViewModel()
     }
 
     @Provides
     fun provideGetAllUsersUseCase(userRepository: UserRepository): GetAllUsersUseCase {
         return GetAllUsersUseCaseImpl(userRepository)
+    }
+
+    @Provides
+    fun provideGetAllUsersPagingUseCase(userDataSource: UserDataSource): GetAllUsersPagingUseCase {
+        return GetAllUsersPagingUseCaseImpl(userDataSource)
+    }
+
+    @Provides
+    fun provideUserPagingSource(userDataSource: UserDataSource): UserPagingDataSource {
+        return UserPagingDataSource(userDataSource)
     }
 
     @Provides

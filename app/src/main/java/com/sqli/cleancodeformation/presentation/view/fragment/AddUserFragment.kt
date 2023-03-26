@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.sqli.cleancodeformation.databinding.FragmentAddUserBinding
 import com.sqli.cleancodeformation.presentation.viewmodel.AddUserViewModel
+import com.sqli.cleancodeformation.presentation.viewmodel.UserSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +27,7 @@ class AddUserFragment : Fragment() {
     private lateinit var profilePicture: String
     private val viewModel: AddUserViewModel by viewModels()
     private lateinit var binding: FragmentAddUserBinding
+    private val sharedViewModel: UserSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +56,7 @@ class AddUserFragment : Fragment() {
             }
 
             viewModel.addUser(username, profilePicture)
+            sharedViewModel.onUserAdded()
 
             findNavController().navigateUp()
         }

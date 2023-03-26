@@ -1,41 +1,35 @@
 package com.sqli.cleancodeformation.presentation.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sqli.cleancodeformation.domain.model.User
-import com.sqli.cleancodeformation.domain.usecase.GetAllUsersUseCase
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.sqli.cleancodeformation.data.UserPagingDataSource
+import com.sqli.cleancodeformation.domain.usecase.GetAllUsersPagingUseCase
 import com.sqli.cleancodeformation.util.SingleLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val getAllUsersUseCase: GetAllUsersUseCase,
+    private val getAllUsersPagingUseCase: GetAllUsersPagingUseCase,
 ) : ViewModel() {
 
+    val data = Pager(
+        PagingConfig(
+            pageSize = 20,
+            enablePlaceholders = false,
+        ),
+    ) {
+        UserPagingDataSource(getAllUsersPagingUseCase.invoke())
+    }.flow.cachedIn(viewModelScope)
 
-    private val _userList = MutableLiveData<List<User>>()
-    val userList: MutableLiveData<List<User>> = _userList
 
     // SingleLiveData to avoid looping in the livedata navigation and stay stuck in GetUserDetailsFragment
     val selectedUserId = SingleLiveData<Int>()
 
-    init {
-        getUsers()
-    }
-
-    private fun getUsers(): MutableLiveData<List<User>> {
-        val mutableLiveData = MutableLiveData<List<User>>()
-        viewModelScope.launch {
-            getAllUsersUseCase.invoke().collect { mutableLiveData ->
-                _userList.value = mutableLiveData
-            }
-        }
-        return mutableLiveData
-    }
 
     fun onUserClicked(id: Int) {
         selectedUserId.value = id

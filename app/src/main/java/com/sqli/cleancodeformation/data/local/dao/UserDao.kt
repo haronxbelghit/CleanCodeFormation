@@ -22,4 +22,8 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(userEntities: List<UserEntity>)
+
+    @Query("SELECT * FROM users ORDER BY id ASC LIMIT :limit OFFSET :offset")
+    suspend fun getUsersPaged(limit: Int, offset: Int): List<UserEntity>
+
 }
