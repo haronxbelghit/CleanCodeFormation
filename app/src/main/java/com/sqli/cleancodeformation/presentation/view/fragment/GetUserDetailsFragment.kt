@@ -53,6 +53,7 @@ class GetUserDetailsFragment : Fragment() {
             binding.tvResDesc.text = user.desc
             binding.tvResTel.text = user.tel
             binding.tvResPhone.text = user.phone
+            binding.tvResEmail.text = user.email
             // Set the user's profile image using Glide
             val uri = Uri.parse(user.profilePictureUri)
 
@@ -78,26 +79,27 @@ class GetUserDetailsFragment : Fragment() {
             val resolveIntent = Intent(Intent.ACTION_SENDTO)
             resolveIntent.data = Uri.parse("mailto:default@recipient.com")
             val resolveInfoList =
-                context?.packageManager?.queryIntentActivities(resolveIntent, PackageManager.MATCH_DEFAULT_ONLY)
-            val intents = resolveInfoList?.mapNotNull { info -> context?.packageManager?.getLaunchIntentForPackage(info.activityInfo.packageName) }
+                context?.packageManager?.queryIntentActivities(
+                    resolveIntent,
+                    PackageManager.MATCH_DEFAULT_ONLY
+                )
+            val intents = resolveInfoList?.mapNotNull { info ->
+                context?.packageManager?.getLaunchIntentForPackage(info.activityInfo.packageName)
+            }
                 ?.toMutableList()
-            if(intents?.isEmpty() == true) {
+            if (intents?.isEmpty() == true) {
                 //no mail client installed. Prompt user or throw exception
             } else if (intents != null) {
-//                if(intents.size == 1) {
-//                    //one mail client installed, start that
-//                    startActivity(intents.first())
-//                } else {
-                    //multiple mail clients installed, let user choose which one to start
-                    val chooser = Intent(Intent.ACTION_CHOOSER)
-                    chooser.putExtra(Intent.EXTRA_INTENT, intents.removeAt(0))
-                    chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intents.toTypedArray())
-                    chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(chooser)
+                val chooser = Intent(Intent.ACTION_CHOOSER)
+                chooser.putExtra(Intent.EXTRA_INTENT, intents.removeAt(0))
+                chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intents.toTypedArray())
+                chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(chooser)
 //                }
             }
         }
     }
+
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -130,8 +132,16 @@ class GetUserDetailsFragment : Fragment() {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            title = viewModel.selectedUser.value?.firstName + " " + viewModel.selectedUser.value?.lastName
-            setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.black)))
+            title =
+                viewModel.selectedUser.value?.firstName + " " + viewModel.selectedUser.value?.lastName
+            setBackgroundDrawable(
+                ColorDrawable(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.black
+                    )
+                )
+            )
         }
     }
 }

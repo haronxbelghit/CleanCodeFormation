@@ -79,13 +79,21 @@ class UserListFragment : Fragment() {
         }
         return binding.root
     }
+
     override fun onResume() {
         super.onResume()
 
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(false)
             title = "All Users"
-            setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.black)))
+            setBackgroundDrawable(
+                ColorDrawable(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.black
+                    )
+                )
+            )
         }
     }
 }
