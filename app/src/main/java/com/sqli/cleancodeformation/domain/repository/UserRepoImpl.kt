@@ -9,13 +9,12 @@ import javax.inject.Singleton
 
 @Singleton
 class UserRepoImpl @Inject constructor(
-    private val userDataSource: UserDataSource
+    private val userDataSource: UserDataSource,
 ) : UserRepository {
 
     override suspend fun getAllUsers(): Flow<List<User>> {
         return userDataSource.getUsers()
     }
-
 
     override suspend fun addUser(user: User) {
         userDataSource.addUser(user)

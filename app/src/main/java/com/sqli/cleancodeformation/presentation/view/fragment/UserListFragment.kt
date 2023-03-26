@@ -35,9 +35,8 @@ class UserListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-
         val binding = FragmentUserListBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this)[UserListViewModel::class.java]
@@ -67,7 +66,6 @@ class UserListFragment : Fragment() {
             }
         }
 
-
         viewModel.selectedUserId.observe(viewLifecycleOwner) { userId ->
             val action =
                 UserListFragmentDirections.actionUserListFragmentToUserDetailFragment(userId)
@@ -90,9 +88,9 @@ class UserListFragment : Fragment() {
                 ColorDrawable(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.black
-                    )
-                )
+                        R.color.black,
+                    ),
+                ),
             )
         }
     }

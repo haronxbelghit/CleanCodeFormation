@@ -34,7 +34,7 @@ class AddUserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentAddUserBinding.inflate(inflater, container, false)
         return binding.root
@@ -58,9 +58,9 @@ class AddUserFragment : Fragment() {
                 ColorDrawable(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.black
-                    )
-                )
+                        R.color.black,
+                    ),
+                ),
             )
         }
     }
@@ -81,7 +81,7 @@ class AddUserFragment : Fragment() {
                 Toast.makeText(
                     requireContext(),
                     "Please enter a first name and profile picture at least",
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
                 return@setOnClickListener
             }
@@ -96,7 +96,7 @@ class AddUserFragment : Fragment() {
                 desc,
                 phone,
                 tel,
-                email
+                email,
             )
             sharedViewModel.onUserAdded()
             findNavController().navigateUp()
@@ -107,14 +107,14 @@ class AddUserFragment : Fragment() {
         binding.selectImageButton.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 selectImage()
             } else {
                 requestPermissions(
                     arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                    REQUEST_CODE_READ_EXTERNAL_STORAGE_PERMISSION
+                    REQUEST_CODE_READ_EXTERNAL_STORAGE_PERMISSION,
                 )
             }
         }
@@ -129,7 +129,7 @@ class AddUserFragment : Fragment() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -141,7 +141,7 @@ class AddUserFragment : Fragment() {
                     Toast.makeText(
                         requireContext(),
                         "Permission denied, unable to select image",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_SHORT,
                     ).show()
                 }
             }

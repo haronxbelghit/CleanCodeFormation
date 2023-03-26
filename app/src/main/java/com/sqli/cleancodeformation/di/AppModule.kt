@@ -11,7 +11,7 @@ import com.sqli.cleancodeformation.data.remote.UserRemoteDataSourceImpl
 import com.sqli.cleancodeformation.data.remote.api.UserApiService
 import com.sqli.cleancodeformation.domain.repository.UserRepoImpl
 import com.sqli.cleancodeformation.domain.repository.UserRepository
-import com.sqli.cleancodeformation.domain.usecase.*
+import com.sqli.cleancodeformation.domain.usecase.* // ktlint-disable no-wildcard-imports
 import com.sqli.cleancodeformation.presentation.viewmodel.UserSharedViewModel
 import dagger.Module
 import dagger.Provides
@@ -22,7 +22,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -30,11 +29,11 @@ object AppModule {
     @Singleton
     @Provides
     fun provideYourDatabase(
-        @ApplicationContext app: Context
+        @ApplicationContext app: Context,
     ) = Room.databaseBuilder(
         app,
         AppDatabase::class.java,
-        "users_db"
+        "users_db",
     )
         .allowMainThreadQueries()
         .build()
@@ -53,7 +52,7 @@ object AppModule {
     @Provides
     fun provideUserDatasource(
         userRemoteDataSource: UserRemoteDataSource,
-        userEntityRepository: com.sqli.cleancodeformation.data.local.UserRepository
+        userEntityRepository: com.sqli.cleancodeformation.data.local.UserRepository,
     ): UserDataSource {
         return UserDataSourceImpl(userRemoteDataSource, userEntityRepository)
     }
@@ -68,7 +67,7 @@ object AppModule {
     @Provides
     fun provideRepository(
         apiService: UserRemoteDataSource,
-        userEntityRepository: com.sqli.cleancodeformation.data.local.UserRepository
+        userEntityRepository: com.sqli.cleancodeformation.data.local.UserRepository,
     ): UserDataSourceImpl {
         return UserDataSourceImpl(apiService, userEntityRepository)
     }

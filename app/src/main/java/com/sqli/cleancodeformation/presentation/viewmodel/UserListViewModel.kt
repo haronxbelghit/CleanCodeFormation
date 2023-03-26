@@ -25,10 +25,8 @@ class UserListViewModel @Inject constructor(
         getAllUsersUseCase.invoke()
     }.flow.cachedIn(viewModelScope)
 
-
     // SingleLiveData to avoid looping in the livedata navigation and stay stuck in GetUserDetailsFragment
     val selectedUserId = SingleLiveData<Int>()
-
 
     fun onUserClicked(id: Int) {
         selectedUserId.value = id

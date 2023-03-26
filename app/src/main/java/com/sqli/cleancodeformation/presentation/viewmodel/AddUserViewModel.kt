@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddUserViewModel @Inject constructor(
     private val addUserUseCase: AddUserUseCase,
-    private val sharedViewModel: UserSharedViewModel
+    private val sharedViewModel: UserSharedViewModel,
 ) :
     ViewModel() {
 
@@ -25,7 +25,7 @@ class AddUserViewModel @Inject constructor(
         desc: String,
         phone: String,
         tel: String,
-        email: String
+        email: String,
     ) {
         val user = User(
             firstName = firstName,

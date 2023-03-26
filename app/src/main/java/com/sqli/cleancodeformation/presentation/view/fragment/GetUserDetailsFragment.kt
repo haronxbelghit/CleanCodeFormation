@@ -31,7 +31,7 @@ class GetUserDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentGetUserDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -65,11 +65,12 @@ class GetUserDetailsFragment : Fragment() {
         binding.tvResPhone.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
-                    Manifest.permission.CALL_PHONE
+                    Manifest.permission.CALL_PHONE,
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 requestPermissions(
-                    arrayOf(Manifest.permission.CALL_PHONE), 0
+                    arrayOf(Manifest.permission.CALL_PHONE),
+                    0,
                 )
             } else {
                 makeCall(binding.tvResPhone.text.toString())
@@ -81,14 +82,14 @@ class GetUserDetailsFragment : Fragment() {
             val resolveInfoList =
                 context?.packageManager?.queryIntentActivities(
                     resolveIntent,
-                    PackageManager.MATCH_DEFAULT_ONLY
+                    PackageManager.MATCH_DEFAULT_ONLY,
                 )
             val intents = resolveInfoList?.mapNotNull { info ->
                 context?.packageManager?.getLaunchIntentForPackage(info.activityInfo.packageName)
             }
                 ?.toMutableList()
             if (intents?.isEmpty() == true) {
-                //no mail client installed. Prompt user or throw exception
+                // no mail client installed. Prompt user or throw exception
             } else if (intents != null) {
                 val chooser = Intent(Intent.ACTION_CHOOSER)
                 chooser.putExtra(Intent.EXTRA_INTENT, intents.removeAt(0))
@@ -104,7 +105,7 @@ class GetUserDetailsFragment : Fragment() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -116,14 +117,15 @@ class GetUserDetailsFragment : Fragment() {
             }
             else -> {
                 requestPermissions(
-                    arrayOf(Manifest.permission.CALL_PHONE), PERMISSION_CALL
+                    arrayOf(Manifest.permission.CALL_PHONE),
+                    PERMISSION_CALL,
                 )
             }
         }
     }
 
     private fun makeCall(num: String) {
-        val callIntent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${num}"))
+        val callIntent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$num"))
         startActivity(callIntent)
     }
 
@@ -138,13 +140,10 @@ class GetUserDetailsFragment : Fragment() {
                 ColorDrawable(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.black
-                    )
-                )
+                        R.color.black,
+                    ),
+                ),
             )
         }
     }
 }
-
-
-

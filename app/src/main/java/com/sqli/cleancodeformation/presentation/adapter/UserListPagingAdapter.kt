@@ -12,7 +12,7 @@ import com.sqli.cleancodeformation.databinding.ItemUserBinding
 import com.sqli.cleancodeformation.domain.model.User
 
 class UserListPagingAdapter(
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
 ) :
     PagingDataAdapter<User, UserListPagingAdapter.UserViewHolder>(DIFF_CALLBACK) {
 

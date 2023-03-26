@@ -4,7 +4,6 @@ import com.sqli.cleancodeformation.data.UserPagingDataSource
 import com.sqli.cleancodeformation.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
-
 interface UserRepository {
 
     suspend fun getAllUsers(): Flow<List<User>>
@@ -12,4 +11,3 @@ interface UserRepository {
     suspend fun getUserById(id: Int): User
     fun getAllUsersPaged(): UserPagingDataSource
 }
-

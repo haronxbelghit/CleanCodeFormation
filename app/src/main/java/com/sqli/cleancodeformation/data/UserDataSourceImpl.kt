@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(
     private val userRemoteDataSource: UserRemoteDataSource,
-    private val userEntityRepository: UserRepository
+    private val userEntityRepository: UserRepository,
 ) : UserDataSource {
 
     override suspend fun getUsers(): Flow<List<User>> {
@@ -25,7 +25,6 @@ class UserDataSourceImpl @Inject constructor(
         return allUsersFlow.map { userEntityList ->
             userEntityList.map { it.toDomain() }
         }
-
     }
 
     override suspend fun addUser(user: User) {
@@ -47,6 +46,4 @@ class UserDataSourceImpl @Inject constructor(
 
         return userEntityRepository.getAllUsersPaged(limit, offset).map { it.toDomain() }
     }
-
-
 }

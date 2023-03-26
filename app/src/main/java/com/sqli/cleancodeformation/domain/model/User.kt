@@ -21,7 +21,7 @@ data class User(
     constructor(source: Parcel) : this(
         source.readValue(Int::class.java.classLoader) as Int?,
         source.readString()!!,
-        source.readString()!!
+        source.readString()!!,
     )
 
     override fun describeContents() = 0
@@ -48,7 +48,6 @@ data class User(
     }
 }
 
-
 fun User.fromDomain(): UserEntity {
     return UserEntity(
         id = id,
@@ -64,7 +63,6 @@ fun User.fromDomain(): UserEntity {
         email = email,
     )
 }
-
 
 fun UserEntity.toDomain(): User {
     return User(

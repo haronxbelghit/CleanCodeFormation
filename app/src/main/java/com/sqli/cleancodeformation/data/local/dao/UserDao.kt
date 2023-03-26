@@ -7,7 +7,6 @@ import androidx.room.Query
 import com.sqli.cleancodeformation.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.Flow
 
-
 @Dao
 interface UserDao {
 
@@ -25,5 +24,4 @@ interface UserDao {
 
     @Query("SELECT * FROM users ORDER BY id ASC LIMIT :limit OFFSET :offset")
     suspend fun getUsersPaged(limit: Int, offset: Int): List<UserEntity>
-
 }

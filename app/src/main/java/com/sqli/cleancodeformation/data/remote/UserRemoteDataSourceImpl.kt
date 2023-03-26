@@ -5,7 +5,7 @@ import com.sqli.cleancodeformation.data.remote.api.UserApiService
 import javax.inject.Inject
 
 class UserRemoteDataSourceImpl @Inject constructor(
-    private val apiService: UserApiService
+    private val apiService: UserApiService,
 ) : UserRemoteDataSource {
 
     override suspend fun getUsers(): List<UserEntity> {
@@ -18,12 +18,12 @@ class UserRemoteDataSourceImpl @Inject constructor(
                 firstName = it.firstName,
                 lastName = it.lastName,
                 profilePictureUri = it.avatar,
-                city = null,
-                country = null,
-                job = null,
-                desc = null,
-                phone = null,
-                tel = null,
+                city = "City",
+                country = "Country",
+                job = "Job",
+                desc = "Description",
+                phone = "Phone",
+                tel = "Telephone",
                 email = it.email,
             )
         }

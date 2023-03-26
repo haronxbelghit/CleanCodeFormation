@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import com.sqli.cleancodeformation.data.local.dao.UserDao
 import com.sqli.cleancodeformation.data.local.entity.UserEntity
 
-
 @Database(entities = [UserEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -22,14 +21,12 @@ abstract class AppDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "users_db"
+                        "users_db",
                     ).allowMainThreadQueries()
                         .build()
                 }
             }
             return INSTANCE!!
         }
-
     }
-
 }

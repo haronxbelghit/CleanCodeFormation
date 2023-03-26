@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
-    private val userDao: UserDao
+    private val userDao: UserDao,
 ) {
 
     fun getAllUsers(): Flow<List<UserEntity>> {
@@ -28,5 +28,4 @@ class UserRepository @Inject constructor(
     suspend fun getAllUsersPaged(limit: Int, offset: Int): List<UserEntity> {
         return userDao.getUsersPaged(limit, offset)
     }
-
 }

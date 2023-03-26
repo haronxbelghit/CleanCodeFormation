@@ -9,5 +9,4 @@ class GetUserDetailsUseCaseImpl(private val userRepository: UserRepository) :
     override suspend fun invoke(id: Int): User {
         return userRepository.getUserById(id)
     }
-
 }

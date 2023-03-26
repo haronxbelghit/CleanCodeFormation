@@ -7,7 +7,7 @@ data class UserApiResponse(
     val perPage: Int,
     val total: Int,
     val totalPages: Int,
-    val data: List<UserApiData>
+    val data: List<UserApiData>,
 )
 
 data class UserApiData(
@@ -15,5 +15,5 @@ data class UserApiData(
     val email: String,
     @SerializedName("first_name") val firstName: String,
     @SerializedName("last_name") val lastName: String,
-    val avatar: String
+    val avatar: String,
 )

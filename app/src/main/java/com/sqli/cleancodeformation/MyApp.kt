@@ -19,5 +19,4 @@ class MyApp : Application() {
         instance = this
         database = AppDatabase.getInstance(this)
     }
-
 }

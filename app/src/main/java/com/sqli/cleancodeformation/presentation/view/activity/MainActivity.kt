@@ -34,13 +34,14 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
+                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE,
             )
         }
 
         if (!packageManager.hasSystemFeature("PERMISSION_CALL")) {
             requestPermissions(
-                arrayOf(android.Manifest.permission.CALL_PHONE), PERMISSION_CALL
+                arrayOf(android.Manifest.permission.CALL_PHONE),
+                PERMISSION_CALL,
             )
         }
     }
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         when (requestCode) {
             MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE -> {
@@ -64,7 +65,8 @@ class MainActivity : AppCompatActivity() {
             }
             else -> {
                 requestPermissions(
-                    arrayOf(android.Manifest.permission.CALL_PHONE), PERMISSION_CALL
+                    arrayOf(android.Manifest.permission.CALL_PHONE),
+                    PERMISSION_CALL,
                 )
             }
         }
