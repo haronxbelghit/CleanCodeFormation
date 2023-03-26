@@ -24,10 +24,7 @@ class UserListPagingAdapter(
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = getItem(position)
-
-        if (user != null) {
-            holder.bind(user)
-        }
+        if (user != null) holder.bind(user = user)
     }
 
     inner class UserViewHolder(private val binding: ItemUserBinding) :

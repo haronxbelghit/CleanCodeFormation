@@ -1,6 +1,7 @@
 package com.sqli.cleancodeformation.domain.repository
 
 import com.sqli.cleancodeformation.data.UserDataSource
+import com.sqli.cleancodeformation.data.UserPagingDataSource
 import com.sqli.cleancodeformation.domain.model.User
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -22,5 +23,9 @@ class UserRepoImpl @Inject constructor(
 
     override suspend fun getUserById(id: Int): User {
         return userDataSource.getUserById(id)
+    }
+
+    override fun getAllUsersPaged(): UserPagingDataSource {
+        return UserPagingDataSource(userDataSource)
     }
 }

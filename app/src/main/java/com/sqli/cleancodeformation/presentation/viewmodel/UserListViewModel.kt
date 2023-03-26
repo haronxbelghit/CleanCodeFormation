@@ -5,8 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.sqli.cleancodeformation.data.UserPagingDataSource
-import com.sqli.cleancodeformation.domain.usecase.GetAllUsersPagingUseCase
+import com.sqli.cleancodeformation.domain.usecase.GetAllUsersUseCase
 import com.sqli.cleancodeformation.util.SingleLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.cancel
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val getAllUsersPagingUseCase: GetAllUsersPagingUseCase,
+    private val getAllUsersUseCase: GetAllUsersUseCase,
 ) : ViewModel() {
 
     val data = Pager(
@@ -23,7 +22,7 @@ class UserListViewModel @Inject constructor(
             enablePlaceholders = false,
         ),
     ) {
-        UserPagingDataSource(getAllUsersPagingUseCase.invoke())
+        getAllUsersUseCase.invoke()
     }.flow.cachedIn(viewModelScope)
 
 

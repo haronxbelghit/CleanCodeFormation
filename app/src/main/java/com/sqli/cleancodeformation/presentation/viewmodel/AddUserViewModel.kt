@@ -9,7 +9,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddUserViewModel @Inject constructor(private val addUserUseCase: AddUserUseCase, private val sharedViewModel: UserSharedViewModel) :
+class AddUserViewModel @Inject constructor(
+    private val addUserUseCase: AddUserUseCase,
+    private val sharedViewModel: UserSharedViewModel
+) :
     ViewModel() {
 
     fun addUser(username: String, profilePictureUri: String) {

@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class UserSharedViewModel : ViewModel() {
+
     private val _userAdded = MutableStateFlow(false)
     val userAdded: StateFlow<Boolean> = _userAdded
 

@@ -1,6 +1,5 @@
 package com.sqli.cleancodeformation.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sqli.cleancodeformation.domain.model.User
@@ -12,7 +11,6 @@ class UserPagingDataSource(
         val page = params.key ?: 0
 
         return try {
-            Log.d("MainPagingSource", "load: $page")
             val entities = userDataSource.getUsersPaged(params.loadSize, page * params.loadSize)
             LoadResult.Page(
                 data = entities,

@@ -40,7 +40,6 @@ class UserDataSourceImpl @Inject constructor(
         return getUsers().toList().size
     }
 
-
     override suspend fun getUsersPaged(limit: Int, offset: Int): List<User> {
         val userRemoteEntityList = userRemoteDataSource.getUsers()
 

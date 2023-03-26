@@ -44,7 +44,7 @@ class UserListFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-         adapter = UserListPagingAdapter(object : UserListPagingAdapter.OnItemClickListener() {
+        adapter = UserListPagingAdapter(object : UserListPagingAdapter.OnItemClickListener() {
             override fun onItemClick(id: Int) {
                 viewModel.onUserClicked(id)
             }

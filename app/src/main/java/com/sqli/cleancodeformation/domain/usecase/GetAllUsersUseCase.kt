@@ -1,9 +1,8 @@
 package com.sqli.cleancodeformation.domain.usecase
 
-import com.sqli.cleancodeformation.domain.model.User
-import kotlinx.coroutines.flow.Flow
+import com.sqli.cleancodeformation.data.UserPagingDataSource
 
 interface GetAllUsersUseCase {
-    suspend operator fun invoke(): Flow<List<User>>
+    operator fun invoke(): UserPagingDataSource
 }
 

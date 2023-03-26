@@ -81,27 +81,21 @@ object AppModule {
     @Provides
     fun provideUserRepository(
         userDataSource: UserDataSource,
-//        userPagingSource: UserPagingDataSource
     ): UserRepository {
         return UserRepoImpl(
             userDataSource,
-//            userPagingSource
         )
     }
+
     @Singleton
     @Provides
-    fun provideYourSharedVM() : UserSharedViewModel{
+    fun provideYourSharedVM(): UserSharedViewModel {
         return UserSharedViewModel()
     }
 
     @Provides
     fun provideGetAllUsersUseCase(userRepository: UserRepository): GetAllUsersUseCase {
         return GetAllUsersUseCaseImpl(userRepository)
-    }
-
-    @Provides
-    fun provideGetAllUsersPagingUseCase(userDataSource: UserDataSource): GetAllUsersPagingUseCase {
-        return GetAllUsersPagingUseCaseImpl(userDataSource)
     }
 
     @Provides
