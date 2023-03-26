@@ -15,10 +15,29 @@ class AddUserViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    fun addUser(username: String, profilePictureUri: String) {
+    fun addUser(
+        firstName: String,
+        profilePictureUri: String,
+        lastName: String,
+        city: String,
+        country: String,
+        job: String,
+        desc: String,
+        phone: String,
+        tel: String,
+        email: String
+    ) {
         val user = User(
-            username = username,
-            profilePictureUri = profilePictureUri
+            firstName = firstName,
+            profilePictureUri = profilePictureUri,
+            lastName = lastName,
+            city = city,
+            country = country,
+            job = job,
+            desc = desc,
+            phone = phone,
+            tel = tel,
+            email = email,
         )
         viewModelScope.launch {
             addUserUseCase(user)

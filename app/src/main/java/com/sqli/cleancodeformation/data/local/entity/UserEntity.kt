@@ -7,6 +7,14 @@ import androidx.room.PrimaryKey
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    var username: String,
-    var profilePictureUri: String
+    var firstName: String,
+    var lastName: String,
+    var city: String?,
+    var country: String?,
+    var job: String?,
+    var desc: String?,
+    var phone: String?,
+    var tel: String?,
+    var email: String,
+    var profilePictureUri: String,
 )

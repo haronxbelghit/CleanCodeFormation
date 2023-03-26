@@ -3,18 +3,21 @@ package com.sqli.cleancodeformation.presentation.view.fragment
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.sqli.cleancodeformation.R
 import com.sqli.cleancodeformation.databinding.FragmentAddUserBinding
 import com.sqli.cleancodeformation.presentation.viewmodel.AddUserViewModel
 import com.sqli.cleancodeformation.presentation.viewmodel.UserSharedViewModel
@@ -23,8 +26,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddUserFragment : Fragment() {
 
-    private lateinit var username: String
     private lateinit var profilePicture: String
+    private lateinit var firstName: String
+    private lateinit var lastName: String
+    private lateinit var profilePictureUri: String
+    private lateinit var city: String
+    private lateinit var country: String
+    private lateinit var job: String
+    private lateinit var desc: String
+    private lateinit var phone: String
+    private lateinit var tel: String
+    private lateinit var email: String
     private val viewModel: AddUserViewModel by viewModels()
     private lateinit var binding: FragmentAddUserBinding
     private val sharedViewModel: UserSharedViewModel by activityViewModels()
@@ -44,18 +56,37 @@ class AddUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.saveButton.setOnClickListener {
-            username = binding.usernameEditText.text.toString()
+            firstName = binding.etFirstName.text.toString()
+            lastName = binding.etLastName.text.toString()
+            city = binding.etCity.text.toString()
+            country = binding.etCountry.text.toString()
+            job = binding.etJob.text.toString()
+            desc = binding.etDesc.text.toString()
+            phone = binding.etPhone.text.toString()
+            tel = binding.etTel.text.toString()
+            email = binding.etEmail.text.toString()
 
-            if (username.isEmpty() || profilePicture.isEmpty()) {
+            if (firstName.isEmpty() || profilePicture.isEmpty()) {
                 Toast.makeText(
                     requireContext(),
-                    "Please enter a username and profile picture",
+                    "Please enter a first name and profile picture at least",
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
             }
 
-            viewModel.addUser(username, profilePicture)
+            viewModel.addUser(
+                firstName,
+                profilePicture,
+                lastName,
+                city,
+                country,
+                job,
+                desc,
+                phone,
+                tel,
+                email
+            )
             sharedViewModel.onUserAdded()
 
             findNavController().navigateUp()
@@ -117,6 +148,23 @@ class AddUserFragment : Fragment() {
                 .load(imageUri)
                 .into(binding.userProfilePicture)
             profilePicture = imageUri.toString()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = "New User Form"
+            setBackgroundDrawable(
+                ColorDrawable(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.black
+                    )
+                )
+            )
         }
     }
 

@@ -15,8 +15,16 @@ class UserRemoteDataSourceImpl @Inject constructor(
         val userEntityList = response.map {
             UserEntity(
                 id = it.id,
-                username = "${it.firstName} ${it.lastName}",
-                profilePictureUri = it.avatar
+                firstName = it.firstName,
+                lastName = it.lastName,
+                profilePictureUri = it.avatar,
+                city = null,
+                country = null,
+                job = null,
+                desc = null,
+                phone = null,
+                tel = null,
+                email = it.email,
             )
         }
         return userEntityList

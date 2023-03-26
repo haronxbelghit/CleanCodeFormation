@@ -14,15 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_frag_title"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center_horizontal"-->
-<!--            android:text="Remplir vos données personelles"-->
-<!--            android:textColor="#000"-->
-<!--            android:textSize="24sp"-->
-<!--            android:textStyle="bold" />-->
         
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +40,7 @@
             android:text="@string/select_image" />
     </LinearLayout>
         <EditText
-            android:id="@+id/username_edit_text"
+            android:id="@+id/et_first_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="7dp"
@@ -59,7 +50,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/et_first_name"
+            android:id="@+id/et_last_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="7dp"
